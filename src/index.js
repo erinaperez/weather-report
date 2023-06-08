@@ -7,6 +7,8 @@ const state = {
     landscape: null,
     cityNameInput: null,
     headerCityName: null,
+    lat: null,
+    lon: null,
     cityName: "Seattle",
 }
 
@@ -43,6 +45,38 @@ const handleTempBtnClick = (direction) => {
     handleTempUpdate();
 }
 
+const handleLatLon = () => {
+    axios.get('127.0.0.1:5000/location',
+    {
+        params: {
+        q: state.cityName
+        }
+    })
+    .then((response) => {
+        state.lat = response.data[0].lat;
+        state.lon = response.data[0].lon;
+        handleWeather()
+    })
+}
+
+const convertToFah = (temp) => {
+    Math.floor((temp - 273.15) * 9/5 + 32)
+}
+
+const handleWeather = () => {
+    axios.get('127.0.0.1:5000/weather',
+    {
+        params: {
+        lat: state.lat,
+        lon: state.lon
+        }
+    })
+    .then( (response) => {
+        state.tempValue = convertToFah(response);
+        handleTempUpdate()
+    });
+    }
+
 const handleCityName = (input) => {
     state.cityName = input;
     state.headerCityName.innerHTML = state.cityName;
@@ -60,6 +94,10 @@ const loadControls = () => {
 }
 
 const registerEvents = () => {
+    state.currentTempButton.addEventListener("click", () => {
+        handleLatLon(cityNameInput);
+    })
+
     state.increaseTempControl.addEventListener("click", () => {
         handleTempBtnClick("up");
     })
