@@ -1,4 +1,5 @@
 const state = {
+    currentTempButton: null,
     increaseTempControl: null,
     decreaseTempControl: null,
     tempValue: 72,
@@ -7,6 +8,8 @@ const state = {
     landscape: null,
     cityNameInput: null,
     headerCityName: null,
+    lat: null,
+    lon: null,
     cityName: "Seattle",
 }
 
@@ -43,12 +46,55 @@ const handleTempBtnClick = (direction) => {
     handleTempUpdate();
 }
 
+const handleLatLon = () => {
+    console.log('clicked')
+    axios.get('http://localhost:5000/location',
+    {
+        params: {
+        q: state.cityName
+        }
+    })
+    .then((response) => {
+        state.lat = response.data[0].lat;
+        state.lon = response.data[0].lon;
+        handleWeather()
+    })
+    .catch((error) => {
+        console.log(error)
+    })
+}
+
+const convertToFah = (temp) => {
+    Math.floor((temp - 273.15) * 9/5 + 32)
+}
+
+const handleWeather = () => {
+    console.log("weather")
+    axios.get('http://localhost:5000/weather',
+    {
+        params: {
+        lat: state.lat,
+        lon: state.lon
+        }
+    })
+    .then( (response) => {
+        console.log("successful weather")
+        state.tempValue = convertToFah(response.data.main.temp);
+        handleTempUpdate()
+    })
+    .catch((error) => {
+        console.log("bad weather")
+        console.log(error)
+    })
+    }
+
 const handleCityName = (input) => {
     state.cityName = input;
     state.headerCityName.innerHTML = state.cityName;
 }
 
 const loadControls = () => {
+    state.currentTempButton = document.getElementById("currentTempButton");
     state.increaseTempControl = document.getElementById("increaseTempControl");
     state.decreaseTempControl = document.getElementById("decreaseTempControl");
     state.cityNameInput = document.getElementById("cityNameInput");
@@ -60,6 +106,8 @@ const loadControls = () => {
 }
 
 const registerEvents = () => {
+    state.currentTempButton.addEventListener("click", handleLatLon)
+
     state.increaseTempControl.addEventListener("click", () => {
         handleTempBtnClick("up");
     })
