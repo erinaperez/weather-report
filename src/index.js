@@ -5,6 +5,9 @@ const state = {
     tempColor: null,
     sky: null,
     landscape: null,
+    cityNameInput: null,
+    headerCityName: null,
+    cityName: "Seattle",
 }
 
 const handleTempColor = (tempValue) => {
@@ -40,9 +43,18 @@ const handleTempBtnClick = (direction) => {
     handleTempUpdate();
 }
 
+const handleCityName = (input) => {
+    state.cityName = input;
+    state.headerCityName.innerHTML = state.cityName;
+}
+
 const loadControls = () => {
     state.increaseTempControl = document.getElementById("increaseTempControl");
     state.decreaseTempControl = document.getElementById("decreaseTempControl");
+    state.cityNameInput = document.getElementById("cityNameInput");
+    state.headerCityName = document.getElementById("headerCityName");
+    state.cityNameInput.value = state.cityName;
+    state.headerCityName.innerHTML = state.cityName;
     document.getElementById("sky").innerHTML = "☁️ ☁️ ☁️ ☀️ ☁️ ☁️";
     handleTempUpdate();
 }
@@ -53,6 +65,9 @@ const registerEvents = () => {
     })
     state.decreaseTempControl.addEventListener("click", () => {
         handleTempBtnClick("down");
+    })
+    state.cityNameInput.addEventListener("input", (event) => {
+        handleCityName(event.target.value)
     })
 }
 const onLoad = () => {
