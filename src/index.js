@@ -3,6 +3,8 @@ const state = {
     decreaseTempControl: null,
     tempValue: 72,
     tempColor: null,
+    sky: null,
+    landscape: null,
 }
 
 const handleTempColor = (tempValue) => {
@@ -13,10 +15,19 @@ const handleTempColor = (tempValue) => {
     else if (tempValue < 50) state.tempColor = "teal";
 }
 
+const handleWeatherGarden = (tempValue) => {
+    if (tempValue >= 80) state.landscape = "🌵__🐍_🦂_🌵🌵__🐍_🏜_🦂";
+    else if (tempValue >= 70 && tempValue < 80) state.landscape = "🌸🌿🌼__🌷🌻🌿_☘️🌱_🌻🌷";
+    else if (tempValue >= 60 && tempValue < 70) state.landscape = "🌾🌾_🍃_🪨__🛤_🌾🌾🌾_🍃";
+    else if (tempValue < 60) state.landscape = "🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲";
+}
+
 const handleTempUpdate = () => {
     handleTempColor(state.tempValue);
+    handleWeatherGarden(state.tempValue)
     document.getElementById("tempValue").style.color = state.tempColor;
     document.getElementById("tempValue").innerHTML = state.tempValue;
+    document.getElementById("landscape").innerHTML = state.landscape;
 }
 
 const handleTempBtnClick = (direction) => {
@@ -32,9 +43,9 @@ const handleTempBtnClick = (direction) => {
 const loadControls = () => {
     state.increaseTempControl = document.getElementById("increaseTempControl");
     state.decreaseTempControl = document.getElementById("decreaseTempControl");
+    document.getElementById("sky").innerHTML = "☁️ ☁️ ☁️ ☀️ ☁️ ☁️";
     handleTempUpdate();
 }
-
 
 const registerEvents = () => {
     state.increaseTempControl.addEventListener("click", () => {
