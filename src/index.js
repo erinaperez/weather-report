@@ -47,7 +47,6 @@ const handleTempBtnClick = (direction) => {
 }
 
 const handleLatLon = () => {
-    console.log('clicked')
     axios.get('http://localhost:5000/location',
     {
         params: {
@@ -64,12 +63,9 @@ const handleLatLon = () => {
     })
 }
 
-const convertToFah = (temp) => {
-    Math.floor((temp - 273.15) * 9/5 + 32)
-}
+const convertToFah = (temp) => Math.floor((Number(temp) - 273.15) * 9/5 + 32);
 
 const handleWeather = () => {
-    console.log("weather")
     axios.get('http://localhost:5000/weather',
     {
         params: {
@@ -77,8 +73,7 @@ const handleWeather = () => {
         lon: state.lon
         }
     })
-    .then( (response) => {
-        console.log("successful weather")
+    .then((response) => {
         state.tempValue = convertToFah(response.data.main.temp);
         handleTempUpdate()
     })
