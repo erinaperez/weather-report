@@ -75,7 +75,7 @@ const handleLatLon = () => {
     .catch((error) => {
         console.log(error)
     })
-}
+};
 
 const convertToFah = (temp) => Math.floor((Number(temp) - 273.15) * 9/5 + 32);
 
@@ -95,12 +95,19 @@ const handleWeather = () => {
         console.log("bad weather")
         console.log(error)
     })
-    }
+    };
 
-const handleCityName = (input) => {
-    state.cityName = input;
-    state.headerCityName.innerHTML = state.cityName;
-}
+    const resetCityName = () => {
+        state.cityName = 'Seattle';
+        state.cityNameInput.value = state.cityName
+        state.headerCityName.textContent =  state.cityName;
+    };
+    
+    const handleCityName = (input) => {
+        state.cityName = input;
+        state.cityNameInput.value = state.cityName;
+        state.headerCityName.innerHTML = state.cityName;
+    };
 
 const loadControls = () => {
     state.currentTempButton = document.getElementById("currentTempButton");
@@ -109,11 +116,12 @@ const loadControls = () => {
     state.cityNameInput = document.getElementById("cityNameInput");
     state.headerCityName = document.getElementById("headerCityName");
     state.cityNameInput.value = state.cityName;
+    state.cityNameReset = document.getElementById('cityNameReset')
     state.headerCityName.innerHTML = state.cityName;
     state.sky = document.getElementById("sky");
     state.skySelect = document.getElementById("skySelect");
     handleTempUpdate();
-}
+};
 
 const registerEvents = () => {
     state.currentTempButton.addEventListener("click", handleLatLon);
@@ -122,13 +130,14 @@ const registerEvents = () => {
 
     state.increaseTempControl.addEventListener("click", () => {
         handleTempBtnClick("up");
-    })
+    });
     state.decreaseTempControl.addEventListener("click", () => {
         handleTempBtnClick("down");
-    })
+    });
     state.cityNameInput.addEventListener("input", (event) => {
         handleCityName(event.target.value)
-    })
+    });
+    state.cityNameReset.addEventListener('click', resetCityName);
 }
 const onLoad = () => {
     loadControls();
