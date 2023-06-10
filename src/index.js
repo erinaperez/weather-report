@@ -5,6 +5,7 @@ const state = {
     tempValue: 72,
     tempColor: null,
     sky: null,
+    skySelect: null,
     landscape: null,
     cityNameInput: null,
     headerCityName: null,
@@ -13,19 +14,32 @@ const state = {
     cityName: "Seattle",
 }
 
+// CHANGE ALL DOUBLE QUOTES TO SINGLE QUOTES!!!
+
 const handleTempColor = (tempValue) => {
     if (tempValue >= 80) state.tempColor = "red"; 
-    else if (tempValue >= 70 && tempValue < 80) state.tempColor = "orange";
-    else if (tempValue >= 60 && tempValue < 70) state.tempColor = "yellow";
-    else if (tempValue >= 50 && tempValue < 60) state.tempColor = "green";
-    else if (tempValue < 50) state.tempColor = "teal";
+    else if (tempValue >= 70 && tempValue < 80) state.tempColor = 'orange';
+    else if (tempValue >= 60 && tempValue < 70) state.tempColor = 'yellow';
+    else if (tempValue >= 50 && tempValue < 60) state.tempColor = 'green';
+    else if (tempValue < 50) state.tempColor = 'teal';
 }
+// add curly braces to if statements
 
 const handleWeatherGarden = (tempValue) => {
-    if (tempValue >= 80) state.landscape = "🌵__🐍_🦂_🌵🌵__🐍_🏜_🦂";
-    else if (tempValue >= 70 && tempValue < 80) state.landscape = "🌸🌿🌼__🌷🌻🌿_☘️🌱_🌻🌷";
-    else if (tempValue >= 60 && tempValue < 70) state.landscape = "🌾🌾_🍃_🪨__🛤_🌾🌾🌾_🍃";
-    else if (tempValue < 60) state.landscape = "🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲";
+    if (tempValue >= 80) state.landscape = '🌵__🐍_🦂_🌵🌵__🐍_🏜_🦂';
+    else if (tempValue >= 70 && tempValue < 80) state.landscape = '🌸🌿🌼__🌷🌻🌿_☘️🌱_🌻🌷';
+    else if (tempValue >= 60 && tempValue < 70) state.landscape = '🌾🌾_🍃_🪨__🛤_🌾🌾🌾_🍃';
+    else if (tempValue < 60) state.landscape = '🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲';
+}
+
+const handleSky = () => {
+    let skySelect = state.skySelect.value;
+    if (skySelect === 'Sunny') state.sky.textContent = '☀️ 😎 ☀️ 😎 ☀️ 😎 ☀️ 😎 ☀️ ';
+    else if (skySelect === 'Cloudy') state.sky.textContent = '☁️ 🌥️ ⛅️ ☁️ 🌥️ ⛅️ ☁️ 🌥️ ⛅️';
+    else if (skySelect === 'Rainy') state.sky.textContent = '🌧🌈⛈🌧🌧💧⛈🌧🌦🌧💧🌧🌧';
+    else if (skySelect === 'Snowy') state.sky.textContent = '🌨❄️🌨🌨❄️❄️🌨❄️🌨❄️❄️🌨🌨';
+    else if (skySelect === 'CatsAndDogs') state.sky.textContent = '🐱 🐈‍⬛ 🐶 🐩 🐱 🐈 🐶 🐱';
+    else if (skySelect === 'Choose Sky') state.sky.textContent = '☁️ ☁️ ☁️ ☀️ ☁️ ☁️';
 }
 
 const handleTempUpdate = () => {
@@ -96,12 +110,15 @@ const loadControls = () => {
     state.headerCityName = document.getElementById("headerCityName");
     state.cityNameInput.value = state.cityName;
     state.headerCityName.innerHTML = state.cityName;
-    document.getElementById("sky").innerHTML = "☁️ ☁️ ☁️ ☀️ ☁️ ☁️";
+    state.sky = document.getElementById("sky");
+    state.skySelect = document.getElementById("skySelect");
     handleTempUpdate();
 }
 
 const registerEvents = () => {
-    state.currentTempButton.addEventListener("click", handleLatLon)
+    state.currentTempButton.addEventListener("click", handleLatLon);
+
+    state.skySelect.addEventListener('change', handleSky);
 
     state.increaseTempControl.addEventListener("click", () => {
         handleTempBtnClick("up");
