@@ -23,23 +23,25 @@ const handleTempColor = (tempValue) => {
     else if (tempValue >= 50 && tempValue < 60) state.tempColor = 'green';
     else if (tempValue < 50) state.tempColor = 'teal';
 }
-// add curly braces to if statements
+// add curly braces to else if statements
 
 const handleWeatherGarden = (tempValue) => {
     if (tempValue >= 80) state.landscape = '🌵__🐍_🦂_🌵🌵__🐍_🏜_🦂';
-    else if (tempValue >= 70 && tempValue < 80) state.landscape = '🌸🌿🌼__🌷🌻🌿_☘️🌱_🌻🌷';
+    else if (tempValue >= 70 && tempValue < 80) state.landscape = '🌸🌿_🌼🌺_🪻🍄🌷_🌻🌿_☘️🌱_🌻🌷';
     else if (tempValue >= 60 && tempValue < 70) state.landscape = '🌾🌾_🍃_🪨__🛤_🌾🌾🌾_🍃';
     else if (tempValue < 60) state.landscape = '🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲';
 }
 
+// add fun emojis 
+
 const handleSky = () => {
     let skySelect = state.skySelect.value;
-    if (skySelect === 'Sunny') state.sky.textContent = '☀️ 😎 ☀️ 😎 ☀️ 😎 ☀️ 😎 ☀️ ';
-    else if (skySelect === 'Cloudy') state.sky.textContent = '☁️ 🌥️ ⛅️ ☁️ 🌥️ ⛅️ ☁️ 🌥️ ⛅️';
-    else if (skySelect === 'Rainy') state.sky.textContent = '🌧🌈⛈🌧🌧💧⛈🌧🌦🌧💧🌧🌧';
-    else if (skySelect === 'Snowy') state.sky.textContent = '🌨❄️🌨🌨❄️❄️🌨❄️🌨❄️❄️🌨🌨';
+    if (skySelect === 'Sunny') state.sky.textContent = '☀️ 😎 ☀️ 😎 ☀️ 😎 ☀️ 😎 ☀️ 😎 ☀️ ';
+    else if (skySelect === 'Cloudy') state.sky.textContent = '☁️ 🌥️ 😶‍🌫️ ⛅️ ☁️ 🌥️ 😶‍🌫️ ⛅️ ☁️ 🌥️ 😶‍🌫️ ⛅️';
+    else if (skySelect === 'Rainy') state.sky.textContent = '🌧🌈⛈🌧🌈🌧⛈🌈⛈🌧🌈🌦💧🌧🌈🌧';
+    else if (skySelect === 'Snowy') state.sky.textContent = '❄️ 🌨 ❄️ 🥶 ❄️ 🌨 ❄️ 🥶 ❄️ 🌨 ❄️ 🥶 ❄️';
     else if (skySelect === 'CatsAndDogs') state.sky.textContent = '🐱 🐈‍⬛ 🐶 🐩 🐱 🐈 🐶 🐱';
-    else if (skySelect === 'Choose Sky') state.sky.textContent = '☁️ ☁️ ☁️ ☀️ ☁️ ☁️';
+    else if (skySelect === 'Choose Sky') state.sky.textContent = '☁️ ☁️ 🌈 ☀️ ☁️ ☁️';
 }
 
 const handleTempUpdate = () => {
@@ -121,6 +123,7 @@ const loadControls = () => {
     state.sky = document.getElementById("sky");
     state.skySelect = document.getElementById("skySelect");
     handleTempUpdate();
+    handleSky();
 };
 
 const registerEvents = () => {
