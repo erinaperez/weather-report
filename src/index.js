@@ -78,7 +78,7 @@ const handleTempBtnClick = (direction) => {
 };
 
 const handleLatLon = () => {
-  axios.get('http://localhost:5000/location',
+  axios.get('https://ada-weather-report-proxy-server.onrender.com',
   {
     params: {
     q: state.cityName
