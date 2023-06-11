@@ -1,3 +1,6 @@
+import 'regenerator-runtime/runtime';
+import axios from 'axios';
+
 const state = {
     currentTempButton: null,
     increaseTempControl: null,
@@ -94,7 +97,7 @@ const handleLatLon = () => {
 const convertToFah = (temp) => Math.floor((Number(temp) - 273.15) * 9/5 + 32);
 
 const handleWeather = () => {
-    axios.get('http://localhost:5000/weather',
+    axios.get('https://ada-weather-report-proxy-server.onrender.com',
     {
         params: {
         lat: state.lat,
