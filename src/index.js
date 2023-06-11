@@ -87,7 +87,7 @@ const handleLatLon = () => {
     handleWeather()
   })
   .catch((error) => {
-    console.log(error)
+    console.log(error.response.data)
   })
 };
 
@@ -106,7 +106,7 @@ const handleWeather = () => {
         handleTempUpdate()
     })
     .catch((error) => {
-        console.log(error)
+        console.log(error.response.data)
     })
     };
 
