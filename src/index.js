@@ -6,6 +6,7 @@ const state = {
     tempColor: null,
     sky: null,
     skySelect: null,
+    gardenContent: null,
     landscape: null,
     cityNameInput: null,
     headerCityName: null,
@@ -44,17 +45,24 @@ const handleSky = () => {
   let skySelect = state.skySelect.value;
   if (skySelect === 'sunny') { 
     state.sky.textContent = '☀️ 😎 ☀️ 🫠 ☀️ 😎 ☀️ 🫠 ☀️ 😎 ☀️ 🫠 ☀️'; 
+    skyColor = 'sunny';
   } else if (skySelect === 'cloudy') {
     state.sky.textContent = '🌥️ 😶‍🌫️ ⛅️ ☁️ 🌥️ 😶‍🌫️ ⛅️ ☁️ 🌥️ 😶‍🌫️ ⛅️ ☁️'; 
+    skyColor = 'cloudy';
   } else if (skySelect === 'rainy') {
     state.sky.textContent = '🌦 🌈 ⚡️ 🌧 ⛈ 🌈 ⚡️ 🌩️ 🌦 🌈 ⚡️ 🌧'; 
+    skyColor = 'rainy';
   } else if (skySelect === 'snowy') {
     state.sky.textContent = '🌨 ❄️ 🥶 ❄️ 🌨 ❄️ 🥶 ❄️ 🌨 ❄️ 🥶 ❄️ 🌨'; 
+    skyColor = 'snowy';
   } else if (skySelect === 'catsAndDogs') {
     state.sky.textContent = '🐱 🐈‍⬛ 🐶 🐩 🐱 🐈 🐶 🐕‍🦺 🐱 🐈 🐶 🦮'; 
+    skyColor = 'catsAndDogs';
   } else if (skySelect === 'chooseSky') {
     state.sky.textContent = '✨ 🌙 ✨ 🌞 ✨ 🌖 ✨ 🪐 ✨ 🌗 ✨ 💫'; 
+    skyColor = 'chooseSky';
   }
+  state.gardenContent.classList = `garden__content ${skyColor}`;
 };
 
 const handleTempUpdate = () => {
@@ -134,6 +142,7 @@ const loadControls = () => {
     state.headerCityName.innerHTML = state.cityName;
     state.sky = document.getElementById('sky');
     state.skySelect = document.getElementById('skySelect');
+    state.gardenContent = document.getElementById('gardenContent');
     handleTempUpdate();
     handleSky();
 };
