@@ -14,6 +14,9 @@ const state = {
     cityName: 'Seattle',
 };
 
+    cityName: 'Seattle',
+}
+
 const handleTempColor = (tempValue) => {
   if (tempValue >= 80) {
     state.tempColor = 'red'; 
@@ -95,65 +98,65 @@ const handleLatLon = () => {
 const convertToFah = (temp) => Math.floor((Number(temp) - 273.15) * 9/5 + 32);
 
 const handleWeather = () => {
-  axios.get('http://localhost:5000/weather',
-  {
-    params: {
-    lat: state.lat,
-    lon: state.lon
-      }
-  })
-  .then((response) => {
-    state.tempValue = convertToFah(response.data.main.temp);
-    handleTempUpdate()
-  })
-  .catch((error) => {
-    console.log('bad weather')
-    console.log(error)
-  })
+    axios.get('http://localhost:5000/weather',
+    {
+        params: {
+        lat: state.lat,
+        lon: state.lon
+        }
+    })
+    .then((response) => {
+        state.tempValue = convertToFah(response.data.main.temp);
+        handleTempUpdate()
+    })
+    .catch((error) => {
+        console.log(error)
+    })
     };
 
-const resetCityName = () => {
-  state.cityName = 'Seattle';
-  state.cityNameInput.value = state.cityName
-  state.headerCityName.textContent =  state.cityName;
+const handleResetCityBtn = () => {
+    state.cityName = 'Seattle';
+    state.cityNameInput.value = state.cityName
+    state.headerCityName.textContent =  state.cityName;
 };
-
-const handleCityName = (input) => {
-  state.cityName = input;
-  state.cityNameInput.value = state.cityName;
-  state.headerCityName.innerHTML = state.cityName;
+    
+const handleCityHeader = (input) => {
+    state.cityName = input;
+    state.cityNameInput.value = state.cityName;
+    state.headerCityName.innerHTML = state.cityName;
 };
 
 const loadControls = () => {
-  state.currentTempButton = document.getElementById('currentTempButton');
-  state.increaseTempControl = document.getElementById('increaseTempControl');
-  state.decreaseTempControl = document.getElementById('decreaseTempControl');
-  state.cityNameInput = document.getElementById('cityNameInput');
-  state.headerCityName = document.getElementById('headerCityName');
-  state.cityNameInput.value = state.cityName;
-  state.cityNameReset = document.getElementById('cityNameReset')
-  state.headerCityName.innerHTML = state.cityName;
-  state.sky = document.getElementById('sky');
-  state.skySelect = document.getElementById('skySelect');
-  handleTempUpdate();
-  handleSky();
+    state.currentTempButton = document.getElementById('currentTempButton');
+    state.increaseTempControl = document.getElementById('increaseTempControl');
+    state.decreaseTempControl = document.getElementById('decreaseTempControl');
+    state.cityNameInput = document.getElementById('cityNameInput');
+    state.headerCityName = document.getElementById('headerCityName');
+    state.cityNameInput.value = state.cityName;
+    state.cityNameReset = document.getElementById('cityNameReset')
+    state.headerCityName.innerHTML = state.cityName;
+    state.sky = document.getElementById('sky');
+    state.skySelect = document.getElementById('skySelect');
+    handleTempUpdate();
+    handleSky();
 };
 
 const registerEvents = () => {
-  state.currentTempButton.addEventListener('click', handleLatLon);
-  state.skySelect.addEventListener('change', handleSky);
-  state.increaseTempControl.addEventListener('click', () => {
-    handleTempBtnClick('up');
-  });
-  state.decreaseTempControl.addEventListener('click', () => {
-    handleTempBtnClick('down');
-  });
-  state.cityNameInput.addEventListener('input', (event) => {
-    handleCityName(event.target.value)
-  });
-  state.cityNameReset.addEventListener('click', resetCityName);
-};
+    state.currentTempButton.addEventListener('click', handleLatLon);
 
+    state.skySelect.addEventListener('change', handleSky);
+
+    state.increaseTempControl.addEventListener('click', () => {
+        handleTempBtnClick('up');
+    });
+    state.decreaseTempControl.addEventListener('click', () => {
+        handleTempBtnClick('down');
+    });
+    state.cityNameInput.addEventListener('input', (event) => {
+        handleCityHeader(event.target.value)
+    });
+    state.cityNameReset.addEventListener('click', handleResetCityBtn);
+}
 const onLoad = () => {
   loadControls();
   registerEvents();
