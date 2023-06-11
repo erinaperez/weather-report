@@ -140,9 +140,7 @@ const loadControls = () => {
 
 const registerEvents = () => {
     state.currentTempButton.addEventListener('click', handleLatLon);
-
     state.skySelect.addEventListener('change', handleSky);
-
     state.increaseTempControl.addEventListener('click', () => {
         handleTempBtnClick('up');
     });
@@ -158,4 +156,5 @@ const onLoad = () => {
   loadControls();
   registerEvents();
 };
+
 onLoad();
