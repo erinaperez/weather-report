@@ -15,28 +15,21 @@ const state = {
     cityName: 'Seattle',
 };
 
-const handleTempColor = (tempValue) => {
+const handleTempColorAndGarden = (tempValue) => {
   if (tempValue >= 80) {
     state.tempColor = 'red'; 
-  } else if (tempValue >= 70 && tempValue < 80) {
-    state.tempColor = 'orange';
-  } else if (tempValue >= 60 && tempValue < 70) {
-    state.tempColor = 'gold';
-  } else if (tempValue >= 50 && tempValue < 60) {
-    state.tempColor = 'green';
-  } else if (tempValue < 50) {
-    state.tempColor = 'teal';
-  }
-};
-
-const handleWeatherGarden = (tempValue) => {
-  if (tempValue >= 80) {
     state.landscape = '🌵 🏜 🐍 🦂 🏝️ 🦀 🐚 🌿 🌻 🍉';
   } else if (tempValue >= 70 && tempValue < 80) {
+    state.tempColor = 'orange';
     state.landscape = '🌿 🌻 🐛 🍀 🌼 🌿 🦋 🍄 🌺 🐝';
   } else if (tempValue >= 60 && tempValue < 70) {
+    state.tempColor = 'gold';
     state.landscape = '🌸 🐝 🌱 🐿️ 🌷 🐞 🍃 🐌 🪻 🐇';
-  } else if (tempValue < 60) {
+  } else if (tempValue >= 50 && tempValue < 60) {
+    state.tempColor = 'green';
+    state.landscape = '🛷 🍂 ☃️ 🍁 🌲 🍂 🪵 🍁 ⛄️ 🌲 🍂';
+  } else if (tempValue < 50) {
+    state.tempColor = 'teal';
     state.landscape = '🛷 🍂 ☃️ 🍁 🌲 🍂 🪵 🍁 ⛄️ 🌲 🍂';
   }
 };
@@ -65,8 +58,7 @@ const handleSky = () => {
 };
 
 const handleTempUpdate = () => {
-  handleTempColor(state.tempValue);
-  handleWeatherGarden(state.tempValue)
+  handleTempColorAndGarden(state.tempValue)
   document.getElementById('tempValue').style.color = state.tempColor;
   document.getElementById('tempValue').innerHTML = state.tempValue;
   document.getElementById('landscape').innerHTML = state.landscape;
