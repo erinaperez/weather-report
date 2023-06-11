@@ -1,7 +1,7 @@
 h2 {
     margin: 0 auto 2rem auto;
 }
-  
+
 body {
 display: grid;
 grid-template-columns: 1fr 2fr;
@@ -28,6 +28,7 @@ font-size: 3em;
 }
 
 .header__city-name {
+margin-left: 1rem;
 font-style: oblique;
 font-size: 2rem;
 }
@@ -58,7 +59,7 @@ grid-row: 2;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    border-radius: 10px
+    border-radius: 6px
 }
 
 .sky__section {
@@ -80,13 +81,13 @@ align-self: center;
 display: flex;
 flex-direction: row;
 justify-content: space-around;
-/* justify-content: center; */
+justify-content: center;
 }
 
 #tempValue {
 font-size: 3rem;
 margin-left: 1.5rem;
-/* padding-right: 1rem; */
+padding-right: 1rem;
 /* margin-right: 1.5rem; */
 }
 
@@ -112,6 +113,7 @@ justify-content: space-between;
 
 border-radius: 8px;
 font-size: 2em;
+background-color: paleturquoise;
 }
 
 .city-name__reset-btn {
@@ -152,7 +154,7 @@ background-color: lightgrey;
 }
 
 .sunny {
-background-color: rgb(221, 255, 255);
+background-color: bisque;
 }
 
 .rainy {
@@ -161,4 +163,8 @@ background-color: lightblue;
 
 .snowy {
 background-color: lightsteelblue;
+}
+
+.catsAndDogs {
+    background-color: blanchedalmond;
 }
