@@ -14,9 +14,6 @@ const state = {
     cityName: 'Seattle',
 };
 
-    cityName: 'Seattle',
-}
-
 const handleTempColor = (tempValue) => {
   if (tempValue >= 80) {
     state.tempColor = 'red'; 
