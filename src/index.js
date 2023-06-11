@@ -45,24 +45,23 @@ const handleSky = () => {
   let skySelect = state.skySelect.value;
   if (skySelect === 'sunny') { 
     state.sky.textContent = '☀️ 😎 ☀️ 🫠 ☀️ 😎 ☀️ 🫠 ☀️ 😎 ☀️ 🫠 ☀️'; 
-    skyColor = 'sunny';
+    state.gardenContent.classList = 'garden__content sunny';
   } else if (skySelect === 'cloudy') {
     state.sky.textContent = '🌥️ 😶‍🌫️ ⛅️ ☁️ 🌥️ 😶‍🌫️ ⛅️ ☁️ 🌥️ 😶‍🌫️ ⛅️ ☁️'; 
-    skyColor = 'cloudy';
+    state.gardenContent.classList = 'garden__content cloudy';
   } else if (skySelect === 'rainy') {
     state.sky.textContent = '🌦 🌈 ⚡️ 🌧 ⛈ 🌈 ⚡️ 🌩️ 🌦 🌈 ⚡️ 🌧'; 
-    skyColor = 'rainy';
+    state.gardenContent.classList = 'garden__content rainy';
   } else if (skySelect === 'snowy') {
     state.sky.textContent = '🌨 ❄️ 🥶 ❄️ 🌨 ❄️ 🥶 ❄️ 🌨 ❄️ 🥶 ❄️ 🌨'; 
-    skyColor = 'snowy';
+    state.gardenContent.classList = 'garden__content snowy';
   } else if (skySelect === 'catsAndDogs') {
     state.sky.textContent = '🐱 🐈‍⬛ 🐶 🐩 🐱 🐈 🐶 🐕‍🦺 🐱 🐈 🐶 🦮'; 
-    skyColor = 'catsAndDogs';
+    state.gardenContent.classList = 'garden__content catsAndDogs';
   } else if (skySelect === 'chooseSky') {
     state.sky.textContent = '✨ 🌙 ✨ 🌞 ✨ 🌖 ✨ 🪐 ✨ 🌗 ✨ 💫'; 
-    skyColor = 'chooseSky';
+    state.gardenContent.classList = 'garden__content chooseSky';
   }
-  state.gardenContent.classList = `garden__content ${skyColor}`;
 };
 
 const handleTempUpdate = () => {
