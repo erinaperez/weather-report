@@ -1,6 +1,3 @@
-import 'regenerator-runtime/runtime';
-import axios from 'axios';
-
 const state = {
     currentTempButton: null,
     increaseTempControl: null,
@@ -77,8 +74,10 @@ const handleTempBtnClick = (direction) => {
   handleTempUpdate();
 };
 
-const handleLatLon = () => {
-  axios.get('https://ada-weather-report-proxy-server.onrender.com',
+const BASE_URL = 'https://ada-weather-report-proxy-server.onrender.com'
+
+const handleLatLon = async () => {
+  await axios.get(`${BASE_URL}`,
   {
     params: {
     q: state.cityName
@@ -96,8 +95,8 @@ const handleLatLon = () => {
 
 const convertToFah = (temp) => Math.floor((Number(temp) - 273.15) * 9/5 + 32);
 
-const handleWeather = () => {
-    axios.get('https://ada-weather-report-proxy-server.onrender.com',
+const handleWeather = async () => {
+    await axios.get(`${BASE_URL}`,
     {
         params: {
         lat: state.lat,
@@ -161,3 +160,6 @@ const onLoad = () => {
 };
 
 onLoad();
+
+import 'regenerator-runtime/runtime';
+import axios from 'axios';
