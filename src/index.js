@@ -74,10 +74,8 @@ const handleTempBtnClick = (direction) => {
   handleTempUpdate();
 };
 
-const BASE_URL = 'https://ada-weather-report-proxy-server.onrender.com/location'
-
 const handleLatLon = async () => {
-  await axios.get(`${BASE_URL}`,
+  await axios.get('https://ada-weather-report-proxy-server.onrender.com/location',
   {
     params: {
     q: state.cityName
@@ -96,7 +94,7 @@ const handleLatLon = async () => {
 const convertToFah = (temp) => Math.floor((Number(temp) - 273.15) * 9/5 + 32);
 
 const handleWeather = async () => {
-    await axios.get(`${BASE_URL}`,
+    await axios.get('https://ada-weather-report-proxy-server.onrender.com/weather',
     {
         params: {
         lat: state.lat,
