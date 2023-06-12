@@ -74,7 +74,7 @@ const handleTempBtnClick = (direction) => {
   handleTempUpdate();
 };
 
-const BASE_URL = 'https://ada-weather-report-proxy-server.onrender.com'
+const BASE_URL = 'https://ada-weather-report-proxy-server.onrender.com/location'
 
 const handleLatLon = async () => {
   await axios.get(`${BASE_URL}`,
